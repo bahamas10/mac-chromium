@@ -50,7 +50,7 @@ install_chromium() {
 
 	# Download the build
 	log 'Downloading the latest chromium...'
-	curl "$chromium_url/$version/chrome-mac.zip" -o "$filename" || exit 3
+	curl -L "$chromium_url/$version/chrome-mac.zip" -o "$filename" || exit 3
 	if cd /tmp && unzip -q "$filename"; then
 		rm -rf /Applications/Chromium.app
 		cp -r ./chrome-mac/Chromium.app /Applications/Chromium.app
