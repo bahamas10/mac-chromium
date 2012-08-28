@@ -37,6 +37,12 @@ log() {
 	$quiet || echo "$@"
 }
 
+# Get the current version
+get_current_version() {
+	defaults read /Applications/Chromium.app/Contents/Info SVNRevision &>/dev/null ||
+	defaults read /Applications/Chromium.app/Contents/Info SCMRevision
+}
+
 # Install Chromium by version number
 install_chromium() {
 	local version=$1
@@ -77,7 +83,7 @@ while getopts 'cfqh' options; do
 done
 
 # Get the version
-current_version=$(defaults read /Applications/Chromium.app/Contents/Info SVNRevision)
+current_version=$(get_current_version)
 latest_version=$(curl -Ss "$chromium_url/LAST_CHANGE")
 
 # Check the version
