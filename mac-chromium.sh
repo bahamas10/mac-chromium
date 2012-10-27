@@ -61,6 +61,7 @@ install_chromium() {
 		rm -rf /Applications/Chromium.app
 		cp -r ./chrome-mac/Chromium.app /Applications/Chromium.app
 		rm -rf "$filename" ./chrome-mac
+		ln -vfs ~/.chromium/ffmpegsumo.so /Applications/Chromium.app/Contents/Versions/*/Chromium\ Framework.framework/Libraries/ffmpegsumo.so
 		log "Installed Chromium $version"
 	else
 		log 'Failed to install!'
